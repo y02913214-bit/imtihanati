@@ -1,91 +1,105 @@
-/* المتغيرات الأساسية */
+/* الألوان العالمية والتدرجات */
 :root {
-    --primary: #4841e9;
-    --bg: #f4f6fa;
-    --card-shadow: 0 10px 40px rgba(0,0,0,0.05);
+    --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    --bg-color: #f0f2f5;
+    --card-radius: 24px;
+    --sun-color: #ff9a9e; /* الأحد - وردي هادئ */
+    --mon-color: #a1c4fd; /* الاثنين - أزرق فاتح */
+    --tue-color: #84fab0; /* الثلاثاء - أخضر نعناعي */
+    --wed-color: #fccb90; /* الأربعاء - برتقالي مشمش */
+    --thu-color: #e0c3fc; /* الخميس - بنفسجي فاتح */
+    --fri-color: #cfd9df; /* الجمعة - رمادي لؤلؤي */
+    --sat-color: #fff1eb; /* السبت - بيج دافئ */
 }
 
 * {
     box-sizing: border-box;
-    -webkit-tap-highlight-color: transparent;
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
 }
 
 body {
-    background-color: var(--bg);
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--bg-color);
     margin: 0;
-    padding: 0;
     display: flex;
     justify-content: center;
-    align-items: flex-start; /* يبدأ من الأعلى ليعطي مساحة في الموبايل */
-    min-height: 100vh;
     direction: rtl;
+    color: #2d3436;
 }
 
-/* الحاوية الرئيسية - تتكيف مع الشاشة */
+/* الحاوية الرئيسية كأنها موبايل آيفون */
 .main-app-wrapper {
-    background: white;
+    background: #ffffff;
     width: 100%;
-    max-width: 500px; /* هذا يمنع التطبيق من التوسع الزائد في الحاسبة */
-    min-height: 100vh; /* في الموبايل يأخذ كامل الطول */
-    padding: 20px;
-    box-shadow: var(--card-shadow);
-    display: flex;
-    flex-direction: column;
+    max-width: 480px;
+    min-height: 100vh;
+    padding: 30px 20px;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.1);
+    position: relative;
 }
 
-/* تعديل للحاسبة ليظهر كأنه هاتف في منتصف الشاشة */
 @media (min-width: 600px) {
-    body {
-        padding: 40px 20px;
-    }
+    body { padding: 40px 0; }
     .main-app-wrapper {
-        min-height: auto;
-        border-radius: 30px;
-        border: 8px solid #333; /* إطار بسيط ليعطي إيحاء الموبايل */
+        min-height: 850px;
+        border-radius: 40px;
+        border: 10px solid #1a1a1a; /* إطار الهاتف الأسود الفخم */
     }
 }
 
+/* الهيدر العلوي */
 .app-header {
-    text-align: center;
-    margin-bottom: 20px;
-}
-
-.header-icon {
-    font-size: 40px;
-    margin-bottom: 10px;
+    text-align: right;
+    margin-bottom: 35px;
+    padding-right: 10px;
 }
 
 .app-header h1 {
-    font-size: 24px;
-    color: #333;
-    margin: 5px 0;
+    font-size: 28px;
+    font-weight: 800;
+    background: var(--primary-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin: 0;
 }
 
 .app-header p {
-    font-size: 13px;
-    color: #777;
-    line-height: 1.5;
+    color: #b2bec3;
+    font-size: 14px;
+    margin-top: 5px;
 }
 
-/* تنسيق أسطر الأيام */
+/* تنسيق الأسطر بتصميم البطاقات العائمة */
 .day-row {
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    background: #fff;
-    border: 1px solid #f0f0f0;
-    margin-bottom: 12px;
-    padding: 15px;
-    border-radius: 18px;
-    transition: 0.2s;
+    background: #ffffff;
+    margin-bottom: 15px;
+    padding: 18px;
+    border-radius: var(--card-radius);
+    border: 1px solid rgba(0,0,0,0.03);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+    transition: all 0.3s ease;
 }
 
+.day-row:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.05);
+}
+
+/* تلوين حافة كل يوم بلون مخصص */
+.day-row:nth-child(1) { border-right: 6px solid var(--sun-color); }
+.day-row:nth-child(2) { border-right: 6px solid var(--mon-color); }
+.day-row:nth-child(3) { border-right: 6px solid var(--tue-color); }
+.day-row:nth-child(4) { border-right: 6px solid var(--wed-color); }
+.day-row:nth-child(5) { border-right: 6px solid var(--thu-color); }
+.day-row:nth-child(6) { border-right: 6px solid var(--fri-color); }
+.day-row:nth-child(7) { border-right: 6px solid var(--sat-color); }
+
 .day-label {
-    width: 65px;
-    font-weight: bold;
-    color: #444;
-    font-size: 15px;
+    font-weight: 700;
+    font-size: 16px;
+    color: #636e72;
+    min-width: 65px;
 }
 
 .subjects-container {
@@ -93,77 +107,69 @@ body {
     display: flex;
     flex-wrap: wrap;
     gap: 8px;
-    justify-content: flex-start;
-    padding: 0 10px;
+    padding-right: 15px;
 }
 
-/* زر الإضافة */
+/* الأزرار والمواد (Tags) */
 .add-subject-btn {
-    width: 35px;
-    height: 35px;
-    border-radius: 12px;
-    border: 1px solid #eee;
-    background: #f9f9ff;
-    color: var(--primary);
-    font-size: 22px;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    border: none;
+    background: #f1f2f6;
+    color: #5758bb;
+    font-size: 24px;
     cursor: pointer;
-    order: 10;
     display: flex;
     align-items: center;
     justify-content: center;
+    transition: 0.2s;
 }
 
-/* تنسيق المواد */
+.add-subject-btn:hover { background: #dfe4ea; transform: rotate(90deg); }
+
 .subject-tag {
-    padding: 7px 12px;
-    border-radius: 10px;
+    background: #f8f9fa;
+    padding: 8px 14px;
+    border-radius: 12px;
     font-size: 13px;
     font-weight: 600;
     display: flex;
     align-items: center;
-    gap: 6px;
-    animation: fadeIn 0.3s ease;
-}
-
-@keyframes fadeIn {
-    from { opacity: 0; transform: scale(0.9); }
-    to { opacity: 1; transform: scale(1); }
+    gap: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
 }
 
 .delete-tag {
-    background: rgba(0,0,0,0.1);
     border: none;
-    border-radius: 50%;
+    background: #ff7675;
+    color: white;
     width: 18px;
     height: 18px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    border-radius: 50%;
+    font-size: 10px;
     cursor: pointer;
-    font-size: 12px;
-    color: inherit;
 }
 
-/* ألوان المواد السبعة */
-.islamia { background: #e6f9ed; color: #27ae60; }
-.arabi { background: #fff4e6; color: #d35400; }
-.englizy { background: #fff9db; color: #f0932b; }
-.riyadhiat { background: #e6f0ff; color: #2980b9; }
-.fizia { background: #f3e8ff; color: #8e44ad; }
-.keemia { background: #ffeef2; color: #d63031; }
-.ahia { background: #e6f9ed; color: #2ecc71; }
+/* ألوان المواد السبعة (Gradient خفيف) */
+.islamia { background: linear-gradient(to left, #e6f9ed, #ffffff); color: #2ecc71; border: 1px solid #2ecc7133; }
+.arabi { background: linear-gradient(to left, #fff4e6, #ffffff); color: #e67e22; border: 1px solid #e67e2233; }
+.englizy { background: linear-gradient(to left, #eef2f3, #ffffff); color: #34495e; border: 1px solid #34495e33; }
+.riyadhiat { background: linear-gradient(to left, #e6f0ff, #ffffff); color: #3498db; border: 1px solid #3498db33; }
+.fizia { background: linear-gradient(to left, #f3e8ff, #ffffff); color: #9b59b6; border: 1px solid #9b59b633; }
+.keemia { background: linear-gradient(to left, #ffeef2, #ffffff); color: #e74c3c; border: 1px solid #e74c3c33; }
+.ahia { background: linear-gradient(to left, #e1f5fe, #ffffff); color: #0288d1; border: 1px solid #0288d133; }
 
-/* قائمة المواد (المينيو) */
+/* القائمة السفلية (Modern Bottom Sheet) */
 #materials-menu {
     position: fixed;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    background: rgba(0,0,0,0.4);
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.3);
+    backdrop-filter: blur(8px);
     display: flex;
     justify-content: center;
     align-items: flex-end;
-    z-index: 1000;
-    backdrop-filter: blur(4px);
+    z-index: 2000;
 }
 
 .hidden { display: none !important; }
@@ -171,54 +177,61 @@ body {
 .menu-content {
     background: white;
     width: 100%;
-    max-width: 500px;
-    padding: 30px 20px;
-    border-radius: 30px 30px 0 0;
-    text-align: center;
-    box-shadow: 0 -10px 40px rgba(0,0,0,0.1);
+    max-width: 480px;
+    padding: 30px;
+    border-radius: 35px 35px 0 0;
+    animation: slideUp 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes slideUp {
+    from { transform: translateY(100%); }
+    to { transform: translateY(0); }
 }
 
 .menu-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 12px;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
     margin: 25px 0;
 }
 
 .menu-item {
-    padding: 15px 5px;
+    padding: 20px;
     background: #f8f9fe;
-    border-radius: 15px;
-    font-weight: 600;
+    border-radius: 20px;
+    font-weight: 700;
+    text-align: center;
     cursor: pointer;
-    border: 1px solid #eee;
-    font-size: 14px;
-    transition: 0.2s;
+    border: 2px solid transparent;
+    transition: 0.3s;
 }
 
-.menu-item:active { transform: scale(0.95); background: var(--primary); color: white; }
+.menu-item:hover {
+    border-color: #5758bb;
+    color: #5758bb;
+    background: #eeefff;
+}
 
-/* الأزرار السفلية */
 .submit-btn {
-    background: var(--primary);
+    background: var(--primary-gradient);
     color: white;
     border: none;
     width: 100%;
-    padding: 18px;
-    border-radius: 18px;
-    font-size: 16px;
-    font-weight: bold;
+    padding: 20px;
+    border-radius: 20px;
+    font-size: 18px;
+    font-weight: 800;
     cursor: pointer;
-    box-shadow: 0 5px 15px rgba(72, 65, 233, 0.3);
+    box-shadow: 0 10px 20px rgba(118, 75, 162, 0.3);
 }
 
 .close-menu-btn {
     width: 100%;
-    padding: 14px;
+    padding: 15px;
     border: none;
-    background: #f0f0f0;
-    border-radius: 15px;
-    margin-top: 10px;
+    background: none;
+    color: #b2bec3;
     font-weight: bold;
-    color: #666;
+    margin-top: 10px;
+    cursor: pointer;
 }
