@@ -1,0 +1,224 @@
+/* المتغيرات الأساسية */
+:root {
+    --primary: #4841e9;
+    --bg: #f4f6fa;
+    --card-shadow: 0 10px 40px rgba(0,0,0,0.05);
+}
+
+* {
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+}
+
+body {
+    background-color: var(--bg);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* يبدأ من الأعلى ليعطي مساحة في الموبايل */
+    min-height: 100vh;
+    direction: rtl;
+}
+
+/* الحاوية الرئيسية - تتكيف مع الشاشة */
+.main-app-wrapper {
+    background: white;
+    width: 100%;
+    max-width: 500px; /* هذا يمنع التطبيق من التوسع الزائد في الحاسبة */
+    min-height: 100vh; /* في الموبايل يأخذ كامل الطول */
+    padding: 20px;
+    box-shadow: var(--card-shadow);
+    display: flex;
+    flex-direction: column;
+}
+
+/* تعديل للحاسبة ليظهر كأنه هاتف في منتصف الشاشة */
+@media (min-width: 600px) {
+    body {
+        padding: 40px 20px;
+    }
+    .main-app-wrapper {
+        min-height: auto;
+        border-radius: 30px;
+        border: 8px solid #333; /* إطار بسيط ليعطي إيحاء الموبايل */
+    }
+}
+
+.app-header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.header-icon {
+    font-size: 40px;
+    margin-bottom: 10px;
+}
+
+.app-header h1 {
+    font-size: 24px;
+    color: #333;
+    margin: 5px 0;
+}
+
+.app-header p {
+    font-size: 13px;
+    color: #777;
+    line-height: 1.5;
+}
+
+/* تنسيق أسطر الأيام */
+.day-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #fff;
+    border: 1px solid #f0f0f0;
+    margin-bottom: 12px;
+    padding: 15px;
+    border-radius: 18px;
+    transition: 0.2s;
+}
+
+.day-label {
+    width: 65px;
+    font-weight: bold;
+    color: #444;
+    font-size: 15px;
+}
+
+.subjects-container {
+    flex: 1;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: flex-start;
+    padding: 0 10px;
+}
+
+/* زر الإضافة */
+.add-subject-btn {
+    width: 35px;
+    height: 35px;
+    border-radius: 12px;
+    border: 1px solid #eee;
+    background: #f9f9ff;
+    color: var(--primary);
+    font-size: 22px;
+    cursor: pointer;
+    order: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* تنسيق المواد */
+.subject-tag {
+    padding: 7px 12px;
+    border-radius: 10px;
+    font-size: 13px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.9); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+.delete-tag {
+    background: rgba(0,0,0,0.1);
+    border: none;
+    border-radius: 50%;
+    width: 18px;
+    height: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 12px;
+    color: inherit;
+}
+
+/* ألوان المواد السبعة */
+.islamia { background: #e6f9ed; color: #27ae60; }
+.arabi { background: #fff4e6; color: #d35400; }
+.englizy { background: #fff9db; color: #f0932b; }
+.riyadhiat { background: #e6f0ff; color: #2980b9; }
+.fizia { background: #f3e8ff; color: #8e44ad; }
+.keemia { background: #ffeef2; color: #d63031; }
+.ahia { background: #e6f9ed; color: #2ecc71; }
+
+/* قائمة المواد (المينيو) */
+#materials-menu {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0,0,0,0.4);
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    z-index: 1000;
+    backdrop-filter: blur(4px);
+}
+
+.hidden { display: none !important; }
+
+.menu-content {
+    background: white;
+    width: 100%;
+    max-width: 500px;
+    padding: 30px 20px;
+    border-radius: 30px 30px 0 0;
+    text-align: center;
+    box-shadow: 0 -10px 40px rgba(0,0,0,0.1);
+}
+
+.menu-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin: 25px 0;
+}
+
+.menu-item {
+    padding: 15px 5px;
+    background: #f8f9fe;
+    border-radius: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    border: 1px solid #eee;
+    font-size: 14px;
+    transition: 0.2s;
+}
+
+.menu-item:active { transform: scale(0.95); background: var(--primary); color: white; }
+
+/* الأزرار السفلية */
+.submit-btn {
+    background: var(--primary);
+    color: white;
+    border: none;
+    width: 100%;
+    padding: 18px;
+    border-radius: 18px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 5px 15px rgba(72, 65, 233, 0.3);
+}
+
+.close-menu-btn {
+    width: 100%;
+    padding: 14px;
+    border: none;
+    background: #f0f0f0;
+    border-radius: 15px;
+    margin-top: 10px;
+    font-weight: bold;
+    color: #666;
+}

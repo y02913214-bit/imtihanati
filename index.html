@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تطبيق امتحاناتي</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="main-app-wrapper">
+        <header class="app-header">
+            <div class="header-icon">📅</div>
+            <h1>جدول الامتحانات</h1>
+            <p>اختر اليوم وأضف المواد التي لديك في ذلك اليوم</p>
+        </header>
+
+        <main class="schedule-body">
+            <div class="day-row">
+                <div class="day-label">الأحد</div>
+                <div class="subjects-container" id="subjects-0">
+                    <button class="add-subject-btn" onclick="openSubjectInput(0)">+</button>
+                </div>
+            </div>
+            <div class="day-row">
+                <div class="day-label">الاثنين</div>
+                <div class="subjects-container" id="subjects-1">
+                    <button class="add-subject-btn" onclick="openSubjectInput(1)">+</button>
+                </div>
+            </div>
+            <div class="day-row">
+                <div class="day-label">الثلاثاء</div>
+                <div class="subjects-container" id="subjects-2">
+                    <button class="add-subject-btn" onclick="openSubjectInput(2)">+</button>
+                </div>
+            </div>
+            <div class="day-row">
+                <div class="day-label">الأربعاء</div>
+                <div class="subjects-container" id="subjects-3">
+                    <button class="add-subject-btn" onclick="openSubjectInput(3)">+</button>
+                </div>
+            </div>
+            <div class="day-row">
+                <div class="day-label">الخميس</div>
+                <div class="subjects-container" id="subjects-4">
+                    <button class="add-subject-btn" onclick="openSubjectInput(4)">+</button>
+                </div>
+            </div>
+            <div class="day-row">
+                <div class="day-label">الجمعة</div>
+                <div class="subjects-container" id="subjects-5">
+                    <button class="add-subject-btn" onclick="openSubjectInput(5)">+</button>
+                </div>
+            </div>
+            <div class="day-row">
+                <div class="day-label">السبت</div>
+                <div class="subjects-container" id="subjects-6">
+                    <button class="add-subject-btn" onclick="openSubjectInput(6)">+</button>
+                </div>
+            </div>
+        </main>
+
+        <footer class="app-footer">
+            <button class="submit-btn">موافق</button>
+            <p class="footer-note">يمكنك تعديل الجداول لاحقاً من الإعدادات</p>
+        </footer>
+    </div>
+
+    <div id="materials-menu" class="hidden">
+        <div class="menu-content">
+            <h3>اختر المادة</h3>
+            <div class="menu-grid">
+                <div class="menu-item" onclick="selectMaterial('إسلامية', 'islamia')">إسلامية</div>
+                <div class="menu-item" onclick="selectMaterial('عربي', 'arabi')">عربي</div>
+                <div class="menu-item" onclick="selectMaterial('إنجليزي', 'englizy')">إنجليزي</div>
+                <div class="menu-item" onclick="selectMaterial('رياضيات', 'riyadhiat')">رياضيات</div>
+                <div class="menu-item" onclick="selectMaterial('فيزياء', 'fizia')">فيزياء</div>
+                <div class="menu-item" onclick="selectMaterial('كيمياء', 'keemia')">كيمياء</div>
+                <div class="menu-item" onclick="selectMaterial('أحياء', 'ahia')">أحياء</div>
+            </div>
+            <button class="close-menu-btn" onclick="closeMenu()">إلغاء</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
